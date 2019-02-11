@@ -50,8 +50,25 @@ public class ContactTest {
     driver.findElement(By.name("company")).clear();
     driver.findElement(By.name("company")).sendKeys("Ivanov-K");
     driver.findElement(By.name("address")).click();
-    driver.findElement(By.name("address")).click();
+    driver.findElement(By.name("address")).clear();
+    driver.findElement(By.name("address")).sendKeys("Krasnodar");
+    driver.findElement(By.name("home")).click();
+    driver.findElement(By.name("home")).clear();
+    driver.findElement(By.name("home")).sendKeys("8(861)333-33-33");
+    driver.findElement(By.name("mobile")).click();
+    driver.findElement(By.name("mobile")).clear();
+    driver.findElement(By.name("mobile")).sendKeys("8(927)333-33-33");
+    driver.findElement(By.name("work")).click();
+    driver.findElement(By.name("work")).clear();
+    driver.findElement(By.name("work")).sendKeys("8(861)444-44-44");
+    driver.findElement(By.name("fax")).click();
+    driver.findElement(By.name("fax")).clear();
+    driver.findElement(By.name("fax")).sendKeys("8(861)444-44-45");
+    driver.findElement(By.name("email")).click();
+    driver.findElement(By.name("email")).clear();
+    driver.findElement(By.name("email")).sendKeys("vano@bk.ru");
     driver.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+    driver.findElement(By.linkText("home page")).click();
   }
 
   @AfterClass(alwaysRun = true)
