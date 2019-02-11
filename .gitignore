@@ -1,6 +1,7 @@
 .gradle
 /build/
 .idea/
+out/
 geckodriver.exe
 # Ignore Gradle GUI config
 gradle-app.setting
