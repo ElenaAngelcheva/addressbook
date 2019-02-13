@@ -36,7 +36,7 @@ public class LoginTest {
   public void testGroupCreation() throws Exception {
     navToGroupsCreation();
     initGroupCreation();
-    fillGroupForm(new GroupDate("group1", "header test", "footer group"));
+    fillGroupForm(new GroupDate("groupName", "header test", "footer group"));
     submitGroupCreation();
   }
 
