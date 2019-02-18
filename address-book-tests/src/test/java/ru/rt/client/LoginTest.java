@@ -9,7 +9,7 @@ public class LoginTest extends TestBase {
   public void testGroupCreation() {
     navToGroupsPage();
     initGroupCreation();
-    fillGroupForm(new GroupDate("groupName", "header test", " group footer"));
+      fillGroupForm(new GroupDate("group1", "header test", " group footer"));
     submitGroupCreation();
   }
 }
