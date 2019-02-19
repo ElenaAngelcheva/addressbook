@@ -3,7 +3,7 @@ package ru.rt.client.tests;
 import org.testng.annotations.Test;
 import ru.rt.client.model.GroupDate;
 
-public class LoginTest extends TestBase {
+public class GroupCreationTest extends TestBase {
 
 
   @Test
