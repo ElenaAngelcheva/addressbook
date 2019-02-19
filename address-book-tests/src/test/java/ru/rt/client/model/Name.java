@@ -1,4 +1,4 @@
-package ru.rt.client;
+package ru.rt.client.model;
 
 public class Name {
     private final String first;

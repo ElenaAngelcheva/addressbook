@@ -1,4 +1,4 @@
-package ru.rt.client;
+package ru.rt.client.model;
 
 public class GroupDate {
     private String name;

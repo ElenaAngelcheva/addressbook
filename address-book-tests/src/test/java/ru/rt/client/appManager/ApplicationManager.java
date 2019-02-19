@@ -1,22 +1,21 @@
-package ru.rt.client;
+package ru.rt.client.appManager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import ru.rt.client.model.CompanyDate;
+import ru.rt.client.model.GroupDate;
+import ru.rt.client.model.Name;
+import ru.rt.client.model.PhoneNumber;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.testng.Assert.fail;
-
-public class TestBase {
+public class ApplicationManager {
     public WebDriver driver;
-    private String baseUrl;
     public boolean acceptNextAlert = true;
+    private String baseUrl;
     private StringBuffer verificationErrors = new StringBuffer();
 
-    @BeforeClass(alwaysRun = true)
-    public void setUp() throws Exception {
+    public void init() {
         driver = new FirefoxDriver();
         baseUrl = "http://localhost/addressbook/addressbook/group.php";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -24,7 +23,7 @@ public class TestBase {
         login("admin", "secret");
     }
 
-    private void login(String login, String password) {
+    public void login(String login, String password) {
         driver.findElement(By.name("user")).click();
         driver.findElement(By.name("user")).clear();
         driver.findElement(By.name("user")).sendKeys(login);
@@ -34,11 +33,11 @@ public class TestBase {
         driver.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
-    protected void submitGroupCreation() {
+    public void submitGroupCreation() {
         driver.findElement(By.name("submit")).click();
     }
 
-    protected void fillGroupForm(GroupDate groupDate) {
+    public void fillGroupForm(GroupDate groupDate) {
         driver.findElement(By.name("group_name")).click();
         driver.findElement(By.name("group_name")).clear();
         driver.findElement(By.name("group_name")).sendKeys(groupDate.getName());
@@ -51,21 +50,16 @@ public class TestBase {
 
     }
 
-    protected void initGroupCreation() {
+    public void initGroupCreation() {
         driver.findElement(By.name("new")).click();
     }
 
-    protected void navToGroupsPage() {
+    public void navToGroupsPage() {
         driver.findElement(By.linkText("groups")).click();
     }
 
-    @AfterClass(alwaysRun = true)
-    public void tearDown() throws Exception {
+    public void stop() {
         driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            fail(verificationErrorString);
-        }
     }
 
     private boolean isElementPresent(By by) {
@@ -101,19 +95,19 @@ public class TestBase {
         }
     }
 
-    protected void clickDeleteBtn() {
+    public void clickDeleteBtn() {
         driver.findElement(By.name("delete")).click();
     }
 
-    protected void selectGroup() {
+    public void selectGroup() {
         driver.findElement(By.name("selected[]")).click();
     }
 
-    protected void submitContact() {
+    public void submitContact() {
         driver.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
     }
 
-    protected void fillContact(Name name, CompanyDate companyDate, PhoneNumber phoneNumber, String email) {
+    public void fillContact(Name name, CompanyDate companyDate, PhoneNumber phoneNumber, String email) {
         driver.findElement(By.name("firstname")).click();
         driver.findElement(By.name("firstname")).clear();
         driver.findElement(By.name("firstname")).sendKeys(name.getFirst());
@@ -149,7 +143,7 @@ public class TestBase {
         driver.findElement(By.name("email")).sendKeys(email);
     }
 
-    protected void nevContact() {
+    public void nevContact() {
         driver.findElement(By.linkText("add new")).click();
     }
 }
