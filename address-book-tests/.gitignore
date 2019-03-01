@@ -1,19 +1,15 @@
 .gradle
+.idea
 /build/
-.idea/
 out/
-geckodriver.exe
 # Ignore Gradle GUI config
 gradle-app.setting
-settings.gradle
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
-
+*.iml
 # Cache of project
 .gradletasknamecache
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
-address-book-tests/build.gradle
-address-book-tests/out/test/classes/ru/rt/client/LoginTest.class

@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'address.book'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    implementation 'org.testng:testng:6.14.3'
+}
