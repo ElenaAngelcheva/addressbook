@@ -2,60 +2,29 @@ package ru.rt.client.appManager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.rt.client.model.CompanyDate;
-import ru.rt.client.model.GroupDate;
-import ru.rt.client.model.Name;
-import ru.rt.client.model.PhoneNumber;
 
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
-    public WebDriver driver;
-    public boolean acceptNextAlert = true;
+    private ContactHelper contactHelper;
+    private SessionHelper sessionHelper;
+    private NavigationHelper navigationHelper;
+    private GroupHelper groupHelper;
+    private boolean acceptNextAlert = true;
     private String baseUrl;
     private StringBuffer verificationErrors = new StringBuffer();
+    private WebDriver driver;
 
     public void init() {
         driver = new FirefoxDriver();
         baseUrl = "http://localhost/addressbook/addressbook/group.php";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get(baseUrl);
-        login("admin", "secret");
-    }
-
-    public void login(String login, String password) {
-        driver.findElement(By.name("user")).click();
-        driver.findElement(By.name("user")).clear();
-        driver.findElement(By.name("user")).sendKeys(login);
-        driver.findElement(By.name("pass")).click();
-        driver.findElement(By.name("pass")).clear();
-        driver.findElement(By.name("pass")).sendKeys(password);
-        driver.findElement(By.xpath("//input[@value='Login']")).click();
-    }
-
-    public void submitGroupCreation() {
-        driver.findElement(By.name("submit")).click();
-    }
-
-    public void fillGroupForm(GroupDate groupDate) {
-        driver.findElement(By.name("group_name")).click();
-        driver.findElement(By.name("group_name")).clear();
-        driver.findElement(By.name("group_name")).sendKeys(groupDate.getName());
-        driver.findElement(By.name("group_header")).click();
-        driver.findElement(By.name("group_header")).clear();
-        driver.findElement(By.name("group_header")).sendKeys(groupDate.getHeader());
-        driver.findElement(By.name("group_footer")).click();
-        driver.findElement(By.name("group_footer")).clear();
-        driver.findElement(By.name("group_footer")).sendKeys(groupDate.getFooter());
-
-    }
-
-    public void initGroupCreation() {
-        driver.findElement(By.name("new")).click();
-    }
-
-    public void navToGroupsPage() {
-        driver.findElement(By.linkText("groups")).click();
+        groupHelper = new GroupHelper(driver);
+        navigationHelper = new NavigationHelper(driver);
+        sessionHelper = new SessionHelper(driver);
+        contactHelper = new ContactHelper(driver);
+        sessionHelper.login("admin", "secret");
     }
 
     public void stop() {
@@ -95,55 +64,19 @@ public class ApplicationManager {
         }
     }
 
-    public void clickDeleteBtn() {
-        driver.findElement(By.name("delete")).click();
+    public GroupHelper getGroupHelper() {
+        return groupHelper;
     }
 
-    public void selectGroup() {
-        driver.findElement(By.name("selected[]")).click();
+    public NavigationHelper getNavigationHelper() {
+        return navigationHelper;
     }
 
-    public void submitContact() {
-        driver.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+    public SessionHelper getSessionHelper() {
+        return sessionHelper;
     }
 
-    public void fillContact(Name name, CompanyDate companyDate, PhoneNumber phoneNumber, String email) {
-        driver.findElement(By.name("firstname")).click();
-        driver.findElement(By.name("firstname")).clear();
-        driver.findElement(By.name("firstname")).sendKeys(name.getFirst());
-        driver.findElement(By.name("middlename")).click();
-        driver.findElement(By.name("middlename")).clear();
-        driver.findElement(By.name("middlename")).sendKeys(name.getMiddle());
-        driver.findElement(By.name("lastname")).click();
-        driver.findElement(By.name("lastname")).clear();
-        driver.findElement(By.name("lastname")).sendKeys(name.getLast());
-        driver.findElement(By.name("nickname")).click();
-        driver.findElement(By.name("nickname")).clear();
-        driver.findElement(By.name("nickname")).sendKeys(name.getNick());
-        driver.findElement(By.name("company")).click();
-        driver.findElement(By.name("company")).clear();
-        driver.findElement(By.name("company")).sendKeys(companyDate.getCompany());
-        driver.findElement(By.name("address")).click();
-        driver.findElement(By.name("address")).clear();
-        driver.findElement(By.name("address")).sendKeys(companyDate.getAddress());
-        driver.findElement(By.name("home")).click();
-        driver.findElement(By.name("home")).clear();
-        driver.findElement(By.name("home")).sendKeys(phoneNumber.getHome());
-        driver.findElement(By.name("mobile")).click();
-        driver.findElement(By.name("mobile")).clear();
-        driver.findElement(By.name("mobile")).sendKeys(phoneNumber.getMobile());
-        driver.findElement(By.name("work")).click();
-        driver.findElement(By.name("work")).clear();
-        driver.findElement(By.name("work")).sendKeys(phoneNumber.getWork());
-        driver.findElement(By.name("fax")).click();
-        driver.findElement(By.name("fax")).clear();
-        driver.findElement(By.name("fax")).sendKeys(phoneNumber.getFax());
-        driver.findElement(By.name("email")).click();
-        driver.findElement(By.name("email")).clear();
-        driver.findElement(By.name("email")).sendKeys(email);
-    }
-
-    public void nevContact() {
-        driver.findElement(By.linkText("add new")).click();
+    public ContactHelper getContactHelper() {
+        return contactHelper;
     }
 }
