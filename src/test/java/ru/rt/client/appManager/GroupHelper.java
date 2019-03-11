@@ -40,4 +40,12 @@ public class GroupHelper {
     public void selectGroup() {
         driver.findElement(By.name("selected[]")).click();
     }
+
+    public void initGroupEdit() { driver.findElement(By.name("edit")).click(); }
+
+    public void submitGroupEdit() { driver.findElement(By.name("update")).click();}
+
+    public void returnGroupPage() { driver.findElement(By.linkText("group page")).click();
+
+    }
 }

@@ -13,7 +13,7 @@ public class ApplicationManager {
     private boolean acceptNextAlert = true;
     private String baseUrl;
     private StringBuffer verificationErrors = new StringBuffer();
-    private WebDriver driver;
+    protected WebDriver driver;
 
     public void init() {
         driver = new FirefoxDriver();
@@ -79,4 +79,5 @@ public class ApplicationManager {
     public ContactHelper getContactHelper() {
         return contactHelper;
     }
+
 }
