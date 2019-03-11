@@ -57,4 +57,20 @@ public class ContactHelper {
     public void nevContact() {
         driver.findElement(By.linkText("add new")).click();
     }
+
+    public void navTOHomePage() {
+        driver.findElement(By.linkText("home")).click();
+
+    }
+
+    public void selectContact() {
+        driver.findElement(By.name("selected[]")).click();
+    }
+
+    public void deleteContact() { driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]")).click();
+    }
+
+    public void popupWindowDeletion() { driver.switchTo().alert().accept();
+    }
 }
+
