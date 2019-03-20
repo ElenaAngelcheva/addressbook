@@ -6,71 +6,49 @@ import ru.rt.client.model.CompanyDate;
 import ru.rt.client.model.Name;
 import ru.rt.client.model.PhoneNumber;
 
-public class ContactHelper {
-    private WebDriver driver;
+public class ContactHelper extends HelperBase {
 
     public ContactHelper(WebDriver driver) {
 
-        this.driver = driver;
+        super(driver);
     }
 
     public void submitContact() {
-        driver.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+        click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
     public void fillContact(Name name, CompanyDate companyDate, PhoneNumber phoneNumber, String email) {
-        driver.findElement(By.name("firstname")).click();
-        driver.findElement(By.name("firstname")).clear();
-        driver.findElement(By.name("firstname")).sendKeys(name.getFirst());
-        driver.findElement(By.name("middlename")).click();
-        driver.findElement(By.name("middlename")).clear();
-        driver.findElement(By.name("middlename")).sendKeys(name.getMiddle());
-        driver.findElement(By.name("lastname")).click();
-        driver.findElement(By.name("lastname")).clear();
-        driver.findElement(By.name("lastname")).sendKeys(name.getLast());
-        driver.findElement(By.name("nickname")).click();
-        driver.findElement(By.name("nickname")).clear();
-        driver.findElement(By.name("nickname")).sendKeys(name.getNick());
-        driver.findElement(By.name("company")).click();
-        driver.findElement(By.name("company")).clear();
-        driver.findElement(By.name("company")).sendKeys(companyDate.getCompany());
-        driver.findElement(By.name("address")).click();
-        driver.findElement(By.name("address")).clear();
-        driver.findElement(By.name("address")).sendKeys(companyDate.getAddress());
-        driver.findElement(By.name("home")).click();
-        driver.findElement(By.name("home")).clear();
-        driver.findElement(By.name("home")).sendKeys(phoneNumber.getHome());
-        driver.findElement(By.name("mobile")).click();
-        driver.findElement(By.name("mobile")).clear();
-        driver.findElement(By.name("mobile")).sendKeys(phoneNumber.getMobile());
-        driver.findElement(By.name("work")).click();
-        driver.findElement(By.name("work")).clear();
-        driver.findElement(By.name("work")).sendKeys(phoneNumber.getWork());
-        driver.findElement(By.name("fax")).click();
-        driver.findElement(By.name("fax")).clear();
-        driver.findElement(By.name("fax")).sendKeys(phoneNumber.getFax());
-        driver.findElement(By.name("email")).click();
-        driver.findElement(By.name("email")).clear();
-        driver.findElement(By.name("email")).sendKeys(email);
+        type(By.name("firstname"), name.getFirst());
+        type((By.name("middlename")), name.getMiddle());
+        type((By.name("lastname")), name.getLast());
+        type((By.name("nickname")), name.getNick());
+        type(By.name("company"), companyDate.getCompany());
+        type(By.name("address"), companyDate.getAddress());
+        type(By.name("home"), phoneNumber.getHome());
+        type(By.name("mobile"), phoneNumber.getMobile());
+        type(By.name("work"), phoneNumber.getWork());
+        type(By.name("fax"), phoneNumber.getFax());
+        type(By.name("email"), email);
     }
 
     public void nevContact() {
-        driver.findElement(By.linkText("add new")).click();
+        click(By.linkText("add new"));
     }
 
     public void navTOHomePage() {
-        driver.findElement(By.linkText("home")).click();
-
+        click(By.linkText("home"));
     }
 
     public void selectContact() {
-        driver.findElement(By.name("selected[]")).click();
+        click(By.name("selected[]"));
     }
 
-    public void deleteContact() { driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]")).click();
+    public void deleteContact() {
+        click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]"));
     }
 
-    public void popupWindowDeletion() { driver.switchTo().alert().accept();
+    public void popupWindowDeletion() {
+        driver.switchTo().alert().accept();
     }
 }
 
